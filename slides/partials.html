@@ -1,0 +1,68 @@
+<section>
+    <h2>Template Partials</h2>
+    <h4>Let's take a look at our mockup</h4>
+    <img src="img/mockup.png" alt="">
+    <p>Let's split our markup into distinct files to make easier to manage</p>
+</section>
+<section>
+    <h2>Let's create header file</h2>
+    <ul>
+        <li>Create a new directory called partials inside our template directory</li>
+        <li>Create a file called header.hbs</li>
+        <li>Create a top level HTML5 element called header</li>
+        <li>Let's add img with our logo, p element with some text and a link </li>
+        <li>modify index.hbs by adding {{>header}} in the body </li>
+    </ul>
+    <pre><code>
+        &lt;body&gt;
+            {{>header}}
+         &lt;/body&gt;
+
+    </code></pre>
+    <aside class="notes">
+        p elememt with text Join us for the first intergallactic BBQ
+        h2 with the date
+        and register to attend button. see mockup for guidance
+        </aside>
+</section>
+
+<section>
+    <p>If we tried to run gulp it would fail, so we need the following modifications to our templates task</p>
+    <pre><code>
+     gulp.task('templates', function(){
+
+    var data = {}; //handlebars takes two arguments
+
+  var options = {
+    batch : ['./src/templates/partials']
+  };
+
+  return gulp.src([
+    'src/templates/**/*.hbs',
+    '!src/templates/partials/**/*.hbs' //ignore the partials directory
+    ])
+    .pipe(handlebars(data, options)) //provide those 2 argument
+        so templating engine can load it
+
+    .pipe(rename(function (path) {
+      path.extname = '.html'; // give the files an .html extention
+    }))
+    .pipe(gulp.dest('./'));
+});
+
+    </code></pre>
+    </section>
+<section>
+    <p>Now our gulp task should run, lets add more partials..</p>
+    <h4>Let's add the following files</h4>
+    <ul>
+        <li>countdown.hbs containing just a list of Year, month and date </li>
+        <li>menu.hbs with just a paragraph</li>
+        <li>footer.hbs with footer element and copyrght info</li>
+        <li>include them all in your index.hbs</li>
+        <li>As long as gulp is still running we should see a full page now</li>
+        <li>We have nice partials we can include anywhere on our site</li>
+        <li>Commit and profit</li>
+    </ul>
+
+</section>

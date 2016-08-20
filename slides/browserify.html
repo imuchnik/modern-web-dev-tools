@@ -1,0 +1,42 @@
+<section>
+    <h1>Browserify</h1>
+    <hr>
+    <hr>
+</section>
+<section>
+    <h2>Browserify is a tool for CommonJs and npm modules bundling  </h2>
+    <p> Using browserify will enable us to create our own commonJs modules as well as use npm seamlessly </p>
+</section>
+
+<section>
+    <h2>Setting up browserify gulp task</h2>
+
+    <ul>
+        <li> We will need to install browserify, vynil-source-stream and viny-buffer</li>
+        <li>Make sure to use --save-dev option</li>
+        <li>the last 2 packages help browserify work with gulp sreams</li>
+    </ul>
+</section>
+
+<section>
+    <pre><code>var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+
+gulp.task('scripts', function(){
+  var b = browserify({
+    entries: 'src/scripts/main.js',
+    debug: true
+  });
+
+  b.bundle()
+    .pipe(source('main.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('dist/scripts/'))
+    .pipe(browserSync.stream());
+});
+    </code></pre>
+</section>

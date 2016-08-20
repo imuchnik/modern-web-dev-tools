@@ -1,0 +1,65 @@
+<section>
+    <p>Templating engines like handlebars allow us to template our data</p>
+    <p>let's try it!</p>
+
+    <a href="files/menu.json" target="_blank">Download menu.json file here</a>
+    and place it into your project root directory
+
+    <p>let's take a look at our json file.</p>
+</section>
+
+<section>
+    <h3>Let add this data to our pages</h3>
+    <ul>
+        <li>Start by requiring it in your gulpfile
+        <pre><code>
+    var menu = require('./menu.json');
+        </code></pre></li>
+
+        <li>Next add it to our data object
+        <pre><code>    #in template task
+     var data = {
+        menu: menu.menuItems
+  };</code></pre></li>
+        <li>note how menuItems correspond to our json format</li>
+        <li>finally modify our menu.hbs to include it</li>
+
+    </ul>
+    <pre><code>
+     &lt;p&gt;Please vote for your favorite items&lt;/p&gt;
+
+    &lt;ul class="section-list menu-list"&gt;
+      {{#each menu}} //iterating through array of our items
+       &lt;li class="link" data-id={{id}}&gt;
+          &lt;span class="menu-title"&gt;{{title}}&lt;/span&gt;
+            &lt;span class="menu-count"&gt;{{count}}&lt;/span&gt;
+        &lt;/li&gt;
+      {{/each}}
+    &lt;/ul&gt;
+
+    </code></pre>
+
+    <p>Let's run gulp to see the result</p>
+
+</section>
+<section>
+    <p>You can now see how the same process can be applied
+        to processing API calls results</p>
+    <h3>So that is adding an array of values</h3>
+    <span>How about a singular dymanic value?</span>
+    <p>Let's add a year to our footer</p>
+    <ul>
+        <li>First add it to our data object
+        <pre><code>
+            var data = {
+        menu: menu.menuItems,
+        year: new Date().getFullYear()
+  };
+
+        </code></pre></li>
+        <li>Add it to footer.hbs as {{year}}</li>
+    </ul>
+    <br>
+    <hr>
+    <h4>Observe the result and commit</h4>
+</section>

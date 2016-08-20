@@ -1,0 +1,62 @@
+<section>
+    <h2>Writing Less gulp task</h2>
+    <ul>
+        <li> Rename main.css to main.less</li>
+        <li>Install gulp less plugin</li>
+        <li>Install 'npm install --save-dev gulp-less'</li>
+        <li>Require it in your gulp file</li>
+        <li>Pipe it throught less preprocessor</li>
+        <li>Watch .less files rather then .css</li>
+        <li> Your file should look like this
+            <pre>
+                <code>
+             var less = require('gulp-less');
+                    ...
+
+              gulp.task('styles', function() {
+                  gulp.src(['src/styles/main.less'])
+                    .pipe(sourcemaps.init())
+                    .pipe(less()) //<-- less pre prepocessor
+                    .pipe(minifyCss())
+                    .pipe(sourcemaps.write())
+                    .pipe(gulp.dest('dist/styles'))
+                    .pipe(browserSync.stream());
+            });
+                    ..
+
+        //in default task
+        gulp.watch('src/styles/**/*.less', ['styles']);
+
+                </code>
+            </pre>
+        </li>
+        <li>Let's try to see the changes and commit</li>
+    </ul>
+    <aside class="notes">
+        Add .wrap style and add them to the pages.
+    </aside>
+</section>
+
+<section>
+    <h2>Modular css</h2>
+    <p> install normalize.css nnom install --save normalize.css</p>
+    <p> @import 'path to your normilize.css file in the node modules</p>
+    this will compile this file when less runs without having to make another network call.
+    <p>We can observe that normalize.css is now added to our page</p>
+</section>
+
+<section>
+    <h2>Lets similarly make our main.css modular</h2>
+    <ul>
+        <li>Crete a new directory call modules inside styles directory</li>
+        <li>Create 2 files called base.less and helpers.less inside our new directory</li>
+        <li>Copy and paste relevant bits into those 2 files</li>
+        <li>Import them into our main.less file</li>
+    </ul>
+    <pre><code>
+        @import "../../node_modules/normalize.css/normalize.css";
+        @import "modules/base.less";
+        @import "modules/helpers.less";
+    </code></pre>
+    <h3> commit and onto Less variables</h3>
+</section>

@@ -1,0 +1,88 @@
+<section>
+    <h2>Less variables</h2>
+    <p> Less provides a variable syntax via @ symbol</p>
+    <p>For example</p>
+<pre>
+    <div style="background-color:#f9ffe2">
+       <p>@yellow: #DDC83A;</p>
+.header-container {
+   background: @yellow;
+}
+
+    </div>
+    </pre>
+
+</section>
+<section>
+    <h2>Let's practice using variables</h2>
+    <ul>
+        <li>Let's create another file called color_variables.less</li>
+        <li>Add the following
+        <pre>
+             <div style="background-color:#f9ffe2">
+            @yellow: #DDC83A;
+            @red: #A05035;
+            @brown: #523E25;
+            @light-bg: #F2F2EC;
+            @dark-bg: #E4E5D8;
+                 </div>
+        </pre>
+        </li>
+        <li>Import into you main.less file</li>
+        <li>import it after external modules but before everything else, because those variables need exist before
+            we can use it in our css
+        </li>
+        <li>let's try to create .less files that correspond to our .hbs file and use our</li>
+    </ul>
+</section>
+<section>
+    <h2>Mixins</h2>
+    <p>Mixins look just like .less files, but less allows us to import them and use them as functions</p>
+    <h4>let's try it.</h4>
+    <ul>
+        <li>Create mixins.less file</li>
+        <li>Add the following code
+        <pre><code>
+.reset {
+  margin: 0;
+  padding: 0;
+}
+
+.rounded-corner(@radius) {
+  border-radius: @radius;
+}
+        </code>
+        </pre>
+
+</li>
+    </ul>
+</section>
+<section>
+    <h3>Cont'd</h3>
+    <ul>
+        </li>
+        <li>Import the file into main.less, right after the variables import</li>
+        <li>Lets try to use it in other files</li>
+        <li>In base.less
+        <pre>
+           <div style="background-color:#f9ffe2">
+.section-heading {
+  .reset;
+}
+.btn {
+  display: block;
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.6em;
+  padding: 1em;
+  .rounded-corner(4px);
+}
+
+            </div>
+        </pre>
+        </li>
+        <li>Let's also add them into our html templates</li>
+        <li>We are now using mixins and modular Less files!</li>
+    </ul>
+</section>

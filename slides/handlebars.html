@@ -19,13 +19,13 @@
         <li>Create and new gulp task called templates
         <pre>
             <code>
-            gulp.task(‘templates’, function(){
+            gulp.task('templates', function(){
               return gulp.src(['src/templates/**/*.hbs']) //watch our template dir
                 .pipe(handlebars()) //pipe through handlebars
-                .pipe(rename(function(path){ //rename, take a function
-                path.extname=’.html’
+                .pipe(rename(function(path){ //rename, takes a function
+                path.extname='.html'
                 })
-                .pipe(gulp.dest(‘./’));
+                .pipe(gulp.dest('./'));
              </code>
         </pre>
         </li>

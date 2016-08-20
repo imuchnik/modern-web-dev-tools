@@ -1,0 +1,3 @@
+https://github.com/LearnFrontEnd/
+http://browserify.org/
+https://github.com/substack/browserify-handbook
